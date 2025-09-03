@@ -1,0 +1,10 @@
+<%- include('partials/header.ejs') %>
+<form action="/addtask" method="post">
+    <label for="heading">heading</label>
+    <input type="text" name="heading" id="heading" placeholder="heading" required>
+    <label for="taskinfo">task info</label>
+    <input type="text" name="taskinfo" id="taskinfo" placeholder="task" required>
+    <button type="submit">add task</button>
+</form>
+
+<%- include('partials/footer.ejs') %>

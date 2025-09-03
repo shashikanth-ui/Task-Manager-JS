@@ -48,9 +48,10 @@ app.get("/login",(req,res)=>{
     res.render("login.ejs");
 })
 
-app.get("/home",(req,res)=>{
+app.get("/home",async(req,res)=>{
     if(req.isAuthenticated()){
-        res.render("home.ejs");
+        const tasks = await db.query("SELECT * FROM tasks WHERE user_id = $1",[req.user.id]);
+        res.render("home.ejs",{tasks:tasks.rows});
     }else{
         res.redirect("/login");
     }
@@ -103,6 +104,28 @@ app.post("/register",async (req,res)=>{
         console.log(err);
     }
 })
+
+app.get("/addtask",(req,res)=>{
+    res.render("addtask.ejs");
+})
+
+app.post("/addtask",async(req,res)=>{
+    const heading = req.body.heading;
+    const taskInfo = req.body.taskinfo;
+    const result = await db.query("INSERT INTO tasks (user_id,task_title,task_info) VALUES($1,$2,$3)RETURNING *",[req.user.id,heading,taskInfo]);
+    res.redirect("/home")
+})
+
+
+
+
+
+
+
+
+
+
+
 
 passport.use("local", new Strategy(
   { usernameField: "email", passwordField: "password" },

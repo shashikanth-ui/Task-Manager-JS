@@ -16,7 +16,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600; /* semi-bold for headings */
 }
 
-.loginBTN,.registerBTN,.logoutBTN,.googleBTN{
+.loginBTN,.registerBTN,.logoutBTN,.googleBTN,.addtaskBTN{
   display: inline-block;
   padding: 10px 15px;
   background: steelblue;

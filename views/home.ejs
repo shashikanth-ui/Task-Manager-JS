@@ -2,5 +2,14 @@
 got u bitches
 
 <a class="logoutBTN" href="/logout">logout</a>
+<div class="task_container">
+    <a class="addtaskBTN" href="/addtask">add task</a>
+<% tasks.forEach(task => { %>
+  <div>
+    <h1>heading : <%= task.task_title %> </h1>
+    <h3>task : <%= task.task_info %> </h3>
+  </div>
+<% }) %>
+</div>
 
 <%- include('partials/footer.ejs') %>
