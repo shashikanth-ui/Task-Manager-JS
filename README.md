@@ -1,4 +1,4 @@
-# Task-Manager-JS
+# Task-Manager-JS (under development)
 
 A full-stack task management web application to create, manage, and track tasks with user authentication.
 
