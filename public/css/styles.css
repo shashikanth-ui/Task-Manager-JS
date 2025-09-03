@@ -1,0 +1,27 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;   /* universal size */
+  line-height: 1.6;  /* makes text easier to read */
+  color: #222;       /* optional, cleaner text color */
+}
+
+/* Reset headings to also use Open Sans */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600; /* semi-bold for headings */
+}
+
+.loginBTN,.registerBTN,.logoutBTN,.googleBTN{
+  display: inline-block;
+  padding: 10px 15px;
+  background: steelblue;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+
+}
