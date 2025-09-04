@@ -1,17 +1,37 @@
 <%- include('partials/header.ejs') %>
-got u bitches
 
-<a class="logoutBTN" href="/logout">logout</a>
-<div class="task_container">
-    <a class="addtaskBTN" href="/addtask">add task</a>
-<% tasks.forEach(task => { %>
-  <div>
-    <h1>heading : <%= task.task_title %> </h1>
-    <h3>task : <%= task.task_info %> </h3>
-    <a class="editTaskBTN" href="/editTask/<%=task.task_id%>">edit task</a>
-    <a class="deleteTaskBTN" href="/deleteTask/<%=task.task_id%>">delete task</a>
+<canvas id="bgCanvas"></canvas>
+
+<div class="indexInfo">
+  <div class="indexText">
+    <h1 class="welcomeText">Manage Your Tasks</h1>
+    <p class="welcomeTextSubtitle">Stay organized and productive with our Task Manager App</p>
   </div>
-<% }) %>
+
+  <!-- Tasks List -->
+  <div class="task_container">
+    <% tasks.forEach(task => { %>
+      <div class="taskCard">
+        <div class="taskContent">
+          <h2><%= task.task_title %></h2>
+          <p><%= task.task_info %></p>
+        </div>
+        <div class="taskActions">
+          <a class="editTaskBTN" href="/editTask/<%= task.task_id %>">Edit</a>
+          <a class="deleteTaskBTN" href="/deleteTask/<%= task.task_id %>">Delete</a>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+
+  <!-- Add Task Button below tasks -->
+  <div class="addTaskContainer">
+    <a class="addtaskBTN" href="/addtask">Add Task</a>
+  </div>
+
 </div>
+
+<!-- Logout button at bottom right -->
+<a class="logoutBTN" href="/logout">Logout</a>
 
 <%- include('partials/footer.ejs') %>

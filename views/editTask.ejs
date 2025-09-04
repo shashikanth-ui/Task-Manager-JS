@@ -1,10 +1,16 @@
 <%- include('partials/header.ejs') %>
-<form action="/editTask/<%= task.task_id  %>" method="post">
-    <label for="heading">heading</label>
-    <input type="text" name="heading" id="heading" placeholder="heading" required value="<%= task.task_title%>">
-    <label for="taskinfo">task info</label>
-    <input type="text" name="taskinfo" id="taskinfo" placeholder="task" required value="<%= task.task_info%>">
-    <button type="submit">update task</button>
-</form>
+<canvas id="bgCanvas"></canvas>
+<div class="editpage">
+  <div class="editpageform">
+    <form action="/editTask/<%= task.task_id %>" method="post">
+      <label for="heading">Heading</label>
+      <input type="text" name="heading" id="heading" placeholder="Heading" required value="<%= task.task_title %>">
 
+      <label for="taskinfo">Task Info</label>
+      <input type="text" name="taskinfo" id="taskinfo" placeholder="Task" required value="<%= task.task_info %>">
+
+      <button type="submit">Update Task</button>
+    </form>
+  </div>
+</div>
 <%- include('partials/footer.ejs') %>
