@@ -1,26 +1,107 @@
-*{
-    padding: 0;
-    margin: 0;
-}
-
 body {
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;   /* universal size */
-  line-height: 1.6;  /* makes text easier to read */
-  color: #222;       /* optional, cleaner text color */
+  font-family: 'Open Sans', sans-serif;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 30%, #dee2e6 60%, #ced4da 100%);
+  color: #212529;
+  margin: 0;
+  padding: 0;
+  background-attachment: fixed; /* subtle movement when scrolling */
+}
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at top left, rgba(255,255,255,0.15), transparent 60%);
+  pointer-events: none; /* doesn’t block interaction */
 }
 
-/* Reset headings to also use Open Sans */
+
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Open Sans", sans-serif;
-  font-weight: 600; /* semi-bold for headings */
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700; /* make them bold */
+  margin-bottom: 0.5rem;
+}
+.indexInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px; /* creates gap from top */
+  position: relative; /* for layering shapes behind */
+  z-index: 2; /* keeps content above shapes */
 }
 
-.loginBTN,.registerBTN,.logoutBTN,.googleBTN,.addtaskBTN,.editTaskBTN,.deleteTaskBTN{
-  display: inline-block;
-  padding: 10px 15px;
-  background: steelblue;
-  color: white;
-  border-radius: 5px;
+.indexText{
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.welcomeText{
+  display: flex;
+  font-size: 3rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.authBtns {
+  display: flex;
+  gap: 20px; /* gap between login & signup */
+  margin-bottom: 20px; /* space below for Google button */
+  justify-content: center;
+}
+/* Login Button (Black bg, white text) */
+#loginBTN {
+    background-color: black;
+    color: white;
+    padding: 10px 30px;
+    text-decoration: none;
+    border: 2px solid black;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+#loginBTN:hover {
+    background-color: white;
+    color: black;
+}
+
+/* Signup Button (White bg, black text) */
+#registerBTN {
+    background-color: white;
+    color: black;
+    padding: 10px 30px;
+    text-decoration: none;
+    border: 2px solid black;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+#registerBTN:hover {
+    background-color: black;
+    color: white;
+}
+
+/* google-buttons */
+.googleBTN {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(white, white) padding-box,
+    linear-gradient(45deg, #4285F4, #34A853, #FBBC05, #EA4335) border-box;
+  color: #555;
+  font-weight: 600;
   text-decoration: none;
+  transition: all 0.3s ease;
+  margin: 0 auto; /* centers below the authBtns */
+}
+
+.googleBTN:hover {
+  background:
+    linear-gradient(white, white) padding-box,
+    linear-gradient(90deg, #EA4335, #FBBC05, #34A853, #4285F4) border-box;
 }
