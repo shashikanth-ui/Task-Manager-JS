@@ -105,6 +105,7 @@ app.post("/register",async (req,res)=>{
     }
 })
 
+// CRUD OPERATIONS
 app.get("/addtask",(req,res)=>{
     res.render("addtask.ejs");
 })
@@ -116,6 +117,64 @@ app.post("/addtask",async(req,res)=>{
     res.redirect("/home")
 })
 
+app.get("/editTask/:id",async(req,res)=>{
+    if(req.isAuthenticated()){
+        try {
+            const taskId = req.params.id;
+            const userId = req.user.id;
+            const result = await db.query("SELECT * FROM tasks WHERE task_id = $1 AND user_id = $2",[taskId,userId]);
+            if(result.rows.length > 0){
+                res.render("editTask.ejs",{task:result.rows[0]});
+            }else{
+                res.redirect("/home");
+            }    
+        } catch (err) {
+            console.log(err);
+        }
+
+    }else{
+        res.redirect("/");
+    }
+});
+
+app.post("/editTask/:id",async(req,res)=>{
+    if(req.isAuthenticated()){
+        const taskId = req.params.id;
+        const heading = req.body.heading;
+        const taskinfo = req.body.taskinfo;
+        const userId = req.user.id;
+        try {
+            const updation = await db.query("UPDATE tasks SET task_title = $1, task_info = $2 WHERE task_id = $3 AND user_id = $4 RETURNING *",[heading,taskinfo,taskId,userId]);
+            console.log("updated info : ",updation.rows[0]);
+            res.redirect("/home");
+        } catch (err) {
+            console.log(err);
+        }
+    }else{
+        res.redirect("/");
+    }
+});
+
+app.get("/deleteTask/:id",async(req,res)=>{
+    if(req.isAuthenticated()){
+        const userId = req.user.id;
+        const taskId = req.params.id;
+        try {
+            const result = await db.query("SELECT * FROM tasks WHERE user_id = $1 AND task_id = $2",[userId,taskId]);
+            if(result.rows.length > 0 ){
+                const deletedInfo = await db.query("DELETE FROM tasks WHERE task_id = $1 AND user_id = $2 RETURNING *",[taskId,userId]);
+                console.log("DELETED INFO : ",deletedInfo.rows[0]);
+                res.redirect("/home");
+            }else{
+                res.redirect("/home")
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }else{
+        res.redirect("/");
+    }
+});
 
 
 

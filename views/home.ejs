@@ -8,6 +8,8 @@ got u bitches
   <div>
     <h1>heading : <%= task.task_title %> </h1>
     <h3>task : <%= task.task_info %> </h3>
+    <a class="editTaskBTN" href="/editTask/<%=task.task_id%>">edit task</a>
+    <a class="deleteTaskBTN" href="/deleteTask/<%=task.task_id%>">delete task</a>
   </div>
 <% }) %>
 </div>
